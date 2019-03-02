@@ -1,0 +1,20 @@
+{
+    "name": "misbah/money-in-words",
+    "description": "Converts Money or Number into Words according to Bangladeshi Convention",
+    "type": "library",
+    "keywords": ["money-in-words", "money-to-words", "money-formatter", "money-converter"],
+    "authors" :[
+    	{
+    		"name": "Misbah Ahmad",
+    		"email": "imiiucian@gmail.com"
+    	}
+	],
+    "autoload":{
+    	"psr-4": {
+    		"MoneyInWords\\": "src/"
+    	}
+    },
+    "require": {},
+    "license": "MIT",
+    "minimum-stability": "dev"
+}
