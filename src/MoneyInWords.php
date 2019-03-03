@@ -57,7 +57,7 @@ class MoneyInWords{
 	{
 		$words = $this->numberToWords($number);
 
-		if(sizeof($words) > 1)
+		if(sizeof($words) > 1 && $words[1] != 'zero' && strlen($words[1]) > 0)
 		{
 			return $words[0] .' taka and '. $words[1]. ' paisa'; 
 		}
@@ -81,10 +81,19 @@ class MoneyInWords{
 
 		$decimalPart = false;
 
-		if(gettype($number) != "integer")
+		if(gettype($number) != "integer" && preg_match("/\./", $numStr))
 		{
-			$decimalPart = preg_replace('/.*\./', '', $numStr);
+			$decimalPart = substr(preg_replace('/.*\./', '', $numStr), 0, 2);
+			$decimalPartInt = intval($decimalPart);
+
+			if(strlen($decimalPart) == 1 && $decimalPart[0] != '0')
+			{
+				$decimalPart = $decimalPart[0] . '0';
+			}
+
 		}
+
+
 		
 		$len = strlen($integerStr);
 		$integerStr = strrev($integerStr);
@@ -141,7 +150,8 @@ class MoneyInWords{
 
 
 		return [
-			$inWords
+			$inWords,
+			''
 		];
 
 	}
