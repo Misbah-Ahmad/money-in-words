@@ -59,9 +59,15 @@ class MoneyInWords{
 
 		if(sizeof($words) > 1 && $words[1] != 'zero' && strlen($words[1]) > 0)
 		{
+			$words[0] = str_replace(' and', '', $words[0]);
+
+			if($words[0] == 'zero' || strlen($words[0]) < 1)
+			{
+				return $words[1]. ' paisa';				
+			}
+
 			return $words[0] .' taka and '. $words[1]. ' paisa'; 
 		}
-
 
 		return $words[0] .' taka';
 
@@ -115,6 +121,7 @@ class MoneyInWords{
 			$odd = ($partLen == 4 || $partLen == 6);
 
 			$temp = $this->solve(strrev($part), $level, 0, $odd);
+			$temp = str_replace(' and', '', $temp);			
 			$inWords = $temp .' crore '. $inWords;
 		}
 
@@ -127,6 +134,9 @@ class MoneyInWords{
 			$odd = ($partLen == 4 || $partLen == 6);
 
 			$temp = $this->solve(strrev($part), $level, 0, $odd);
+
+			$temp = str_replace(' and', '', $temp);
+
 			$inWords = $temp .' crore '. $inWords;
 		}
 
