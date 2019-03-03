@@ -1,6 +1,6 @@
 <?php 
 
-
+namespace MoneyInWords;
 class MoneyInWords{
 
 	private $digitMap;
